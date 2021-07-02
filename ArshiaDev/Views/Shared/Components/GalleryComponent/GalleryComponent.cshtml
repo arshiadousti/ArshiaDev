@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Gallery>
+
+
+@foreach (var img in Model)
+{
+    <div class="col-md-3" style="margin:8px;padding:8px;">
+        <a target="_blank" href="~/Images/Galleries/@img.ImageName">
+            <img src="~/Images/Galleries/@img.ImageName" class="GalleryPreview" alt="تصویر یافت نشد">
+        </a>
+    </div>
+}
+
+

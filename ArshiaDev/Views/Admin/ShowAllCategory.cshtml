@@ -1,0 +1,137 @@
+﻿@model ArshiaDev.Core.ViewModels.ShowAllCategoriesViewModel
+@inject ArshiaDev.Core.Classes.Injection checkChild
+@{
+    ViewData["Title"] = "لیست دسته بندی ها";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-offset-2">
+    <h1 class="text-center">لیست دسته بندی ها</h1>
+
+    <p>
+        <a onclick="AddMainCategory()" class="btn btn-primary">ایجاد گروه جدید</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    نام گروه
+                </th>
+                <th>
+                    زیر گروه ها
+                </th>
+                <th> عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.GetAllMainCategories)
+            {
+                <tr id="category_@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @if (checkChild.ExistChild(item.Id))
+                        {
+                            <ul>
+                                @foreach (var subitem in Model.GetAllSubCategories)
+                                {
+                                    <li id="subCat_@subitem.Id">
+                                        @subitem.Name
+                                        <a onclick="EditCategory(@subitem.Id)" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
+                                        <a onclick="DeleteCategory(@subitem.Id,2)" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>-</p>
+                        }
+                    </td>
+                    <td>
+                        <a onclick="AddSubCategory(@item.Id)" class="btn btn-primary btn-sm"> ایجاد زیرگروه جدید</a>|
+                        <a onclick="EditCategory(@item.Id)" class="btn btn-warning btn-sm"> ویرایش</a>|
+                        <a onclick="DeleteCategory(@item.Id,1)" class="btn btn-danger btn-sm"> حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:lavender">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ModalBody">
+
+                </div>
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+@section Dev{
+
+    <script>
+        function AddMainCategory() {
+            $.get("/Admin/AddMainCategory", function (resut) {
+                $("#myModal").modal('show');
+                $("#ModalBody").html(resut);
+                $("#modalTitle").html("افزودن گروه جدید");
+            })
+        }
+    </script>
+
+    <script>
+        function EditCategory(id) {
+            $.get("/Admin/EditMainCategory/" + id, function (resut) {
+                $("#myModal").modal('show');
+                $("#ModalBody").html(resut);
+                $("#modalTitle").html("ویرایش گروه");
+            })
+        }
+    </script>
+
+    <script>
+        function AddSubCategory(id) {
+            $.get("/Admin/AddMainCategory/" + id, function (resut) {
+                $("#myModal").modal('show');
+                $("#ModalBody").html(resut);
+                $("#modalTitle").html("افزودن زیر گروه جدید");
+            })
+        }
+    </script>
+
+    <script>
+        function DeleteCategory(id, type) {
+
+            if (type == 1) {
+                if (confirm("آیا از حذف مطمئن هستید؟")) {
+                    $.get("/Admin/DeleteCategory/" + id, function () {
+                        $("#category_" + id).hide('slow');
+                    })
+                }
+            }
+            else {
+                if (confirm("آیا از حذف مطمئن هستید؟")) {
+                    $.get("/Admin/DeleteCategory/" + id, function () {
+                        $("#subCat_" + id).hide('slow');
+                    })
+                }
+            }
+        }
+    </script>
+
+}

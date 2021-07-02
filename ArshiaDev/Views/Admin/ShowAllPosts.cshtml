@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Post>
+@inject ArshiaDev.Core.Classes.Injection writerName
+@using ArshiaDev.Core.Classes
+@{
+    ViewData["Title"] = "نمایش تمام پست ها";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center">پست های منتشر شده وبلاگ</h1>
+
+<div class="col-md-offset-2">
+    <p>
+        <a asp-action="AddPost" asp-controller="Admin" class="btn btn-primary float-left">ایجاد پست جدید</a>
+        <input class="float-right form-control" id="postSearch" placeholder="جستجو...." onkeyup="postSearch()" />
+    </p>
+    
+    <table class="table" id="postTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.StickToTheTop)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.IsShared)
+                </th>
+                <th>
+                    نویسنده
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <img class="img-thumbnail" style="max-height:200px; max-width:200px" src="~/Images/Posts/@item.ImageName" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (item.StickToTheTop)
+                    {
+                        <a><i class="fa fa-plus"></i></a>
+                    }
+                    else
+                    {
+                        <a><i class="fa fa-minus"></i></a>
+                    }
+                </td>
+                <td>
+                    @if (item.IsShared)
+                    {
+                        <a><i class="fa fa-plus"></i></a>
+                    }
+                    else
+                    {
+                        <a><i class="fa fa-minus"></i></a>
+                    }
+                </td>
+
+                <td>
+                    @writerName.Writer(item.UserId)
+                </td>
+                <td>
+                    @item.CreateDate.Shamsi()
+                </td>
+                <td>
+                    <a asp-action="EditPost" asp-route-id="@item.Id" class="btn btn-warning btn-sm">ویرایش</a>
+                    <a class="btn btn-primary btn-sm" asp-action="AddGallery" asp-route-id="@item.Id">گالری</a>
+                    <a class="btn btn-danger btn-sm">حذف</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Dev{ 
+
+<script>
+    function postSearch() {
+        var input, table, tr, td, txtValue, filter;
+        input = document.getElementById("postSearch");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("postTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+
+            if (td) {
+                txtValue = td.innerHTML || tx.textContent;
+
+                if (txtValue.toUpperCase().indexOf(filter) >= 0) {
+                    tr[i].style.display = "";
+                }
+                else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+}

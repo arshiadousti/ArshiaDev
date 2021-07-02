@@ -1,0 +1,64 @@
+﻿@model ArshiaDev.Core.ViewModels.GalleryViewModel
+
+@{
+    ViewData["Title"] = "مدیریت گالری";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center">مدیریت گالری پست</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddGallery" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ایجاد گالری جدید" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8" id="galleryTable">
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="ShowAllPosts">بازگشت</a>
+</div>
+
+@section Dev{ 
+
+<script>
+    window.onload = function () {
+        var id = @ViewBag.PostId;
+        var container = $("#galleryTable");
+
+        $.get("/Admin/ShowAllPostGallery/" + id, function (result) {
+            container.html('');
+            container.html(result);
+        })
+
+
+    }
+</script>
+
+<script>
+    function DeleteGallery(id) {
+        if (confirm("آیا از حذف مطمئن هستید؟")) {
+            $.get("/Admin/DeleteGallery/" + id, function () {
+                $("#gallery_" + id).hide('slow');
+            });
+        }
+    }
+</script>
+
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

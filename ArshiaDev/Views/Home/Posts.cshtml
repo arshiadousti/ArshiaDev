@@ -1,0 +1,53 @@
+﻿@model ArshiaDev.Core.ViewModels.ShowPostViewModel
+@{
+    ViewData["Title"] = Model.FillPost.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ParentId = null;
+}
+
+<h1 class="float-lg-right float-md-right float-sm-none">@Model.FillPost.Title</h1>
+
+<hr />
+<div class="col-md-8 col-md-offset-2">
+    <div class="SinglePost">
+        <img class="img-fluid img-responsive DetailImg" src="~/Images/Posts/@Model.FillPost.ImageName" />
+        <hr />
+        <div class="PostText">
+            @Model.FillPost.Text
+        </div>
+        <hr />
+
+        <div class="row">
+            <h4>گالری: </h4>
+            <div class="col-md-6">
+                @await (Component.InvokeAsync("GalleryComponent", Convert.ToInt32(Model.FillPost.Id)))
+            </div>
+            
+        </div>
+
+        <hr />
+
+        <div>
+            <h4>تگ ها :</h4>
+            @foreach (var tag in Model.FillTags)
+            {
+                <a class="badge"><h4> @tag.TagName</h4></a>
+            }
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:25px;">
+        @await Component.InvokeAsync("CommentComponent",Model.FillPost.Id) 
+    </div>
+    
+</div>
+
+@section PageSection{ 
+
+<script>
+    function SetComment(id) {
+        $("#ParentId").val(id);
+    }
+</script>
+
+}

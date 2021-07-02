@@ -1,0 +1,46 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] </title>
+
+    <link href="~/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    @*<script src="https://kit.fontawesome.com/2345389616.js" crossorigin="anonymous"></script>*@
+    <link href="~/css/site.css" rel="stylesheet" />
+
+</head>
+<body dir="rtl" >
+    <header>
+        <h5 class="pull-right">
+            ارشیا دوستی
+        </h5>
+        <a class="Menu" asp-action="ShowAllPosts" asp-controller="Admin">مدیریت پست ها</a>|
+        <a asp-action="ShowAllRoles" asp-controller="Admin">مدیریت نقش ها</a> |
+        <a asp-action="ShowAllPermissions" asp-controller="Admin">مدیریت دسترسی ها</a> | 
+        <a asp-action="ShowAllCategory" asp-controller="Admin">مدیریت دسته بندی ها</a> |
+        <a asp-action="ShowAllComments" asp-controller="Admin">مدیریت کامنت ها</a> |
+        <a asp-action="ShowAllUsers" asp-controller="Admin">مدیریت کاربران</a>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Mardani - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/js/jquery-1.9.1.min.js"></script>
+    <script src="~/js/bootstrap-rtl.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    @RenderSection("Dev", required: false)
+</body>
+</html>

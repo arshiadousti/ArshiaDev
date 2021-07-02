@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Gallery>
+
+
+    @*<div class="gallery">
+            <a target="_blank" href="~/Images/Galleries/@img.ImageName">
+                <img src="/Images/Galleries/@img.ImageName" alt="Forest" width="600" height="400">
+            </a>
+            <div class="desc"></div>
+        </div>*@
+    <!-- Carousel wrapper -->
+    <div id="carouselBasicExample"
+         class="carousel slide carousel-fade"
+         data-mdb-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    <button type="button"
+                            data-mdb-target="#carouselBasicExample"
+                            data-mdb-slide-to="0"
+                            class="active"
+                            aria-current="true"
+                            aria-label="عکس شماره @i"></button>
+                }
+                else
+                {
+                    <button type="button"
+                            data-mdb-target="#carouselBasicExample"
+                            data-mdb-slide-to="1"
+                            aria-label="عکس شماه @i"></button>
+                }
+            }
+        </div>
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+            <!-- Single item -->
+            @foreach (var item in Model)
+            {
+                <div class="carousel-item active">
+                    <img src="/Images/Galleries/@item.ImageName"
+                         class="d-block w-100 GalleryPreview"
+                         alt="تصویر یافت نشد" />
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div>
+            }
+
+            <!-- Single item -->
+
+        </div>
+        <!-- Inner -->
+        <!-- Controls -->
+        <button class="carousel-control-prev"
+                type="button"
+                data-mdb-target="#carouselBasicExample"
+                data-mdb-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">قبلی</span>
+        </button>
+        <button class="carousel-control-next"
+                type="button"
+                data-mdb-target="#carouselBasicExample"
+                data-mdb-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">بعدی</span>
+        </button>
+    </div>
+    <!-- Carousel wrapper -->
+

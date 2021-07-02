@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Comments>
+@inject ArshiaDev.Core.Classes.Injection injection
+@using ArshiaDev.Core.Classes
+@{
+    int postId = ViewBag.PostId;
+    int i = 0;
+}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="be-comment-block">
+        <h1 class="comments-title">نظرات (@Model.Count())</h1>
+
+        @foreach (var comment in Model.Where(x => x.ParentId == null))
+        {
+            <div>
+                <div class="be-comment">
+                    <div class="be-img-comment pull-right">
+                        <a>
+                            <img src="~/Images/UnknownPic.png" alt="تصویر لود نشد" class="be-ava-comment">
+                        </a>
+                    </div>
+                    <div class="be-comment-content">
+
+                        <span class="be-comment-name">
+                            <a href="blog-detail-2.html">@comment.Sender</a>
+                        </span>
+                        <span class="be-comment-time">
+                            <i class="fa fa-clock-o"></i>
+                            @comment.CreateDate.Shamsi()
+                        </span>
+
+                        <p class="be-comment-text">
+                            @comment.Text
+                            <a class="btn btn-sm btn-warning" onclick="SetComment(@comment.Id)"><i class="fa fa-reply"></i></a>
+                        </p>
+
+                    </div>
+                </div>
+                @if (await injection.ExsistsReply(comment.Id))
+                {
+                    
+                        <div class="accordion">
+                            <div class="card">
+                                <div class="card-header" id="heading_@i">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_@i" aria-expanded="false" aria-controls="collapse_@i">
+                                            نمایش پاسخ ها
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div id="collapse_@i" class="collapse" aria-labelledby="heading_@i" data-parent="accordion">
+
+
+                                @foreach (var reply in Model.Where(x => x.ParentId == comment.Id))
+                                {
+                                    i = i + 1;
+                                    <div class="card-body">
+                                        <div class="be-comment">
+                                            <div class="be-img-comment pull-right">
+                                                <a>
+                                                    <img src="~/Images/UnknownPic.png" alt="تصویر لود نشد" class="be-ava-comment">
+                                                </a>
+                                            </div>
+                                            <div class="be-comment-content">
+
+                                                <span class="be-comment-name">
+                                                    <a href="blog-detail-2.html">@reply.Sender</a>
+                                                </span>
+                                                <span class="be-comment-time">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    @reply.CreateDate.Shamsi()
+                                                </span>
+
+                                                <p class="be-comment-text">
+                                                    @reply.Text
+                                                    <a class="btn btn-sm btn-warning" onclick="SetComment(@reply.Id)"><i class="fa fa-reply"></i></a>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+
+                    
+                }
+            </div>
+
+
+        }
+        <form asp-action="AddComment" asp-controller="Home" class="form-block">
+            <div class="row">
+                <input type="hidden" value=@postId name="id" id="id" />
+                <input type="hidden" value="" name="ParentId" id="ParentId" />
+                <div class="col-xs-12 col-sm-6 ">
+                    <div class="form-group fl_icon">
+                        <div class="icon"><i class="fa fa-user "></i></div>
+                        <input class="form-input" name="Sender" id="Sender" type="text" placeholder="نام یا نام مستعار خود را وارد کنید...">
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <textarea class="form-input" name="Message" id="Message" required placeholder="نظر خود را بنویسید ..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">ثبت</button>
+            </div>
+        </form>
+    </div>
+</div>

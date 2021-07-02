@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "صفحه اصلی";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row Cards" style="margin-top:200px;">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3 Essays" >
+            <div class="card-header">نوشته های من</div>
+            <div class="card-body">
+                <hr />
+                <p class="card-text">اگر دوست داری نوشته هایی که نوشتم رو ببینی میتونی اینجا کلیک کنی</p>
+                <p class="card-text">عموما سعی میکنم در ارتباط با تکنولوژی مربط بنویسم اما هر جور نوشته ای میتونی پیدا کنی</p>
+                <a class="btn btn-block btn-warning" asp-action="AllPosts">اینجا کلیک کنید</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3 CV">
+            <div class="card-header">رزومه من</div>
+            <hr />
+            <div class="card-body">
+                <p class="card-text">برای آشنایی بیشتر با من میتونید رزومه من رو اینجا ببینید</p>
+                <a class="btn btn-block btn-warning">اینجا کلیک کنید</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3 Contact">
+            <div class="card-header">تماس با من</div>
+            <hr>
+            <div class="card-body">
+                <p class="card-text">اگر دنبال راه ارتباطی با من میگردی اینجا کلیک کن</p>
+                <a class="btn btn-block btn-warning">اینجا کلیک کنید</a>
+            </div>
+        </div>
+    </div>
+</div>
+

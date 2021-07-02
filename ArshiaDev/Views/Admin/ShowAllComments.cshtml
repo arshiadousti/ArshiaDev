@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Comments>
+@using ArshiaDev.Core.Classes
+@{
+    ViewData["Title"] = "نمایش نظرات";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<h1 class="text-center">نمایش نظرات</h1>
+
+
+<div class="col-md-offset-2">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+
+                <th>
+                    تاریخ ایجاد
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Post.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAccepted)
+                </th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="Status_"@item.Id>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+
+                    <td>
+                        @item.CreateDate.Shamsi()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Post.Title)
+                    </td>
+                    <td >
+                        @if (item.IsAccepted)
+                            {
+                                <p style="color:green">
+                                    تایید شده
+                                </p>
+                            }
+                            else
+                            {
+                                <p style="color:red">
+                                    عدم تایید
+                                </p>
+                            }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-success" onclick="AcceptComment(@item.Id)">تایید</a>
+                        <a class="btn btn-sm btn-danger" onclick="DeclineComment(@item.Id)">عدم تایید</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Dev{
+
+    <script>
+        function AcceptComment(id) {
+            if (confirm("آیا از تایید این کامنت مطمئن هستید؟ بعدا نیز میتوانید آن را تغییر دهید.")) {
+                $.get("/Admin/AcceptComment/" + id, function () {
+                    $("#Status_" + id).hide('slow');
+                });
+            }
+        }
+    </script>
+    <script>
+        function DeclineComment(id) {
+            if (confirm("آیا از رد این کامنت مطمئن هستید؟ بعدا نیز میتوانید آن را تغییر دهید.")) {
+                $.get("/Admin/DeclineComment/" + id, function () {
+                    $("#Status_" + id).hide('slow');
+                });
+            }
+        }
+    </script>
+
+}

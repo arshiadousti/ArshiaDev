@@ -1,0 +1,93 @@
+﻿@model ArshiaDev.Core.ViewModels.PostViewModel
+@inject ArshiaDev.Core.Classes.Injection inject
+@{
+    ViewData["Title"] = "ویرایش" + Model.Title;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+   
+}
+
+<h1 class="text-center">@Model.Title ویرایش</h1>
+
+<hr />
+@if (ViewBag.SelectedCategoryIsNull == true)
+{
+    <div class="col-md-4 col-md-offset-4">
+        <div class="alert alert-danger">
+            <p>لطفا حداقل یک دسته برای پست خود انتخاب کنید.</p>
+        </div>
+    </div>
+}
+<div class="row">
+
+    <form asp-action="EditPost">
+        <div class="col-md-8">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" />
+                <img src="~/Images/Posts/@Model.ImageName" style="max-height:200px;max-width:200px;" class="img-thumbnail" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <textarea asp-for="Text" class="form-control"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="StickToTheTop" /> @Html.DisplayNameFor(model => model.StickToTheTop)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsShared" /> @Html.DisplayNameFor(model => model.IsShared)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" placeholder="کلمات کلیدی را با ویرگول ، جدا کنید" />
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ویرایش" class="btn btn-warning" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <ul>
+                @foreach (var item in Model.Categories.Where(x => x.ParentId == null))
+                {
+                    <li>
+                        @item.Name <input @((await inject.SelectedCategory(item.Id, ViewBag.PostId) ? "checked" : "")) style="margin-left:5px;" type="checkbox" value="@item.Id" name="postCat" id="postCat" />
+                        @if (inject.ExistChild(item.Id))
+                        {
+                            <ul>
+                                @foreach (var subitem in Model.Categories.Where(x => x.ParentId == item.Id))
+                                {
+                                    <li>
+                                        @subitem.Name <input @((await inject.SelectedCategory(subitem.Id, ViewBag.PostId) ? "checked" : "")) style="margin-left:5px;" type="checkbox" value="@subitem.Id" name="postCat" id="postCat" />
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </form>
+</div>
+
+
+<div>
+    <a asp-action="ShowAllPosts">بازگشت</a>
+</div>
+

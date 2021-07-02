@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Gallery>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImageName)
+                    </th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="gallery_"@item.Id>
+                        <td>
+                            <img src="~/Images/Galleries/@item.ImageName" style="max-height:300px;max-width:300px;" />
+                        </td>
+                        <td>
+                            <a onclick="DeleteGallery(@item.Id)" class="btn btn-xs btn-danger" asp-action="DeleteGallery" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a> |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+

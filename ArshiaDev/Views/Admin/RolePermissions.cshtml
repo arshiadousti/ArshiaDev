@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Persmissions>
+@inject ArshiaDev.Core.Classes.Injection inject
+@{
+    ViewData["Title"] = "تعیین دسترسی";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int roleId = ViewBag.roleId;
+}
+
+@if (ViewBag.RolePermissionError == true)
+{
+    <div class="alert alert-danger">
+        <h3>لطفا حداقل یک دسترسی را انتخاب نمایید.</h3>
+    </div>
+}
+
+<h1 class="text-center">تعیین سطح دسترسی</h1>
+<form asp-action="RolePermissions">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <a class="btn btn-outline-warning" asp-action="ShowAllRoles"> بازگشت</a>
+            <input class="float-left btn btn-primary" type="submit" value="ثبت" />
+
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+            <input type="text" class="form-control" placeholder="جستجو..." id="rolePermissionSearch" onkeyup="RolePermissionSearch()" />
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3" style="margin-top:30px;">
+            <ul style="list-style:none" id="rolePersmissionUl">
+                @foreach (var item in Model)
+                {
+                    <li style="background-color:lavender; margin:10px;padding:10px;">
+                        <a style="color:black; font-size:16px;">
+                            <input type="checkbox" value="@item.Id" name="permissionsId" id="permissionsId" style="margin-right:5px;" @((await inject.ExsistRolePermission(roleId,item.Id)?"checked":"")) />
+                            @item.PermissionName
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</form>
+@section Dev{ 
+<script>
+    function RolePermissionSearch() {
+        var input, filter, ul, a, li, txtValue;
+        input = document.getElementById("rolePermissionSearch");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("rolePersmissionUl");
+        li = ul.getElementsByTagName("li");
+
+        for (var i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a) {
+                txtValue = a.innerHTML || a.textContent;
+
+                if (txtValue.toUpperCase().indexOf(filter) >= 0) {
+                    li[i].style.display = "";
+                }
+                else {
+                    li[i].style.display = "none";
+                }
+
+            }
+        }
+    }
+</script>
+}

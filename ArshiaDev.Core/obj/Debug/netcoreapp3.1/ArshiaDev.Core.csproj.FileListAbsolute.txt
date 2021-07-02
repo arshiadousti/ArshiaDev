@@ -1,0 +1,15 @@
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\bin\Debug\netcoreapp3.1\ArshiaDev.Core.deps.json
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\bin\Debug\netcoreapp3.1\ArshiaDev.Core.dll
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.AssemblyInfoInputs.cache
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.AssemblyInfo.cs
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\bin\Debug\netcoreapp3.1\ArshiaDev.Core.runtimeconfig.json
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\bin\Debug\netcoreapp3.1\ArshiaDev.Core.runtimeconfig.dev.json
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.genruntimeconfig.cache
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\bin\Debug\netcoreapp3.1\ArshiaDev.Core.pdb
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.dll
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.pdb
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\bin\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.dll
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\bin\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.pdb
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.csproj.CopyComplete
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.csproj.CoreCompileInputs.cache
+F:\MyApplications\ArshiaDev\ArshiaDev.Core\obj\Debug\netcoreapp3.1\ArshiaDev.Core.csproj.AssemblyReference.cache

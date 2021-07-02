@@ -1,0 +1,9 @@
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\bin\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.deps.json
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\bin\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.dll
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\bin\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.pdb
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\obj\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.AssemblyInfoInputs.cache
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\obj\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.AssemblyInfo.cs
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\obj\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.dll
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\obj\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.pdb
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\obj\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.csproj.CoreCompileInputs.cache
+F:\MyApplications\ArshiaDev\ArshiaDev.DataAccessLayer\obj\Debug\netcoreapp3.1\ArshiaDev.DataAccessLayer.csproj.AssemblyReference.cache

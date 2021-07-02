@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>*@
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] </title>
+
+    <link href="~/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/2345389616.js" crossorigin="anonymous"></script>
+    @*<link href="~/css/site.css" rel="stylesheet" />*@
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/HomePageSheet.css" rel="stylesheet" />
+    <link href="~/css/CommentStyleSheet.css" rel="stylesheet" />
+</head>
+<body dir="rtl">
+    <header>
+        <div class="header row">
+            <a href="#default" class="logo">Arshia Dev</a>
+
+            <div class="col-md-4">
+                <div class="header-right">
+
+                    <a href="#contact">تماس با من</a>
+                    <a href="#about">رزومه من</a>
+                    <a class="active" href="#home">صفحه اصلی</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <input class="form-control" type="text" placeholder="جستجو ... " />
+            </div>
+        </div>
+    </header>
+    <div class="col-md-offset-1">
+        @RenderBody()
+    </div>
+    <script src="~/js/jquery-1.9.1.min.js"></script>
+    <script src="~/js/bootstrap-rtl.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("PageSection", required: false)
+</body>
+</html>

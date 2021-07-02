@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Role>
+
+@{
+    ViewData["Title"] = "نقش ها";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>نمایش نقش های سایت</h1>
+
+<p>
+    <a class="btn btn-primary" onclick="AddRole()">ایجاد نقش جدید </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr id="role_@item.Id">
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                <a class="btn btn-xs btn-warning" onclick="EditRole(@item.Id)"> ویرایش</a> | 
+                <a class="btn btn-xs btn-primary" asp-action="RolePermissions" asp-route-id="@item.Id"> تعیین سطح دسترسی</a> | 
+                <a class="btn btn-xs btn-danger" onclick="DeleteRole(@item.Id)"> حذف</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:lavender">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ModalBody">
+
+                </div>
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+@section Dev{ 
+
+
+   <script>
+       function AddRole() {
+           $.get("/Admin/AddRole", function (result) {
+               $("#myModal").modal('show');
+               $("#ModalBody").html(result);
+               $("#modalTitle").html("افزودن نقش جدید");
+           })
+       }
+   </script>
+
+<script>
+    function EditRole(id) {
+        $.get("/Admin/EditRole/" + id, function (result) {
+            $("#myModal").modal('show');
+            $("#ModalBody").html(result);
+            $("#modalTitle").html("ویرایش نقش");
+        })
+    }
+</script>
+
+<script>
+    function DeleteRole(id) {
+
+        if (confirm("آیا از حذف مطمئن هستید؟")) {
+            $.get("/Admin/DeleteRole/" + id, function () {
+                $("#role_" + id).hide('slow');
+            })
+        }
+    }
+</script>
+
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ArshiaDev.DataAccessLayer.Entities.Post>
+@{
+    ViewData["Title"] = "پست ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">پست ها</h1>
+<div class="col-md-4 col-md-offset-3">
+    @foreach (var post in Model)
+    {
+        <div class="card Post" style="width: 18rem;">
+            <img class="card-img-top postImage" src="~/Images/Posts/@post.ImageName" alt="تصویر لود نشد">
+            <div class="card-body">
+                <h5 class="card-title">@post.Title</h5>
+                <hr />
+                <p class="card-text">@post.Description</p>
+                <a asp-action="Posts" asp-route-id="@post.Id" class="badge badge-success">ادامه مطلب ... </a>
+            </div>
+        </div>
+        <hr />
+    }
+</div>
+
