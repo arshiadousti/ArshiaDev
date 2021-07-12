@@ -1,3 +1,7 @@
 *.dll
 *.pdb
 *netcoreapp3.1
+ArshiaDev/bin/Debug/netcoreapp3.1/ArshiaDev.Views.pdb
+ArshiaDev/obj/Debug/netcoreapp3.1/ArshiaDev.Views.dll
+ArshiaDev/obj/Debug/netcoreapp3.1/ArshiaDev.Views.pdb
+ArshiaDev/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_Layout.cshtml.g.cs
