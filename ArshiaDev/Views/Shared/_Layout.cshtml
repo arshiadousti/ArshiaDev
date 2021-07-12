@@ -29,9 +29,12 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <input class="form-control" type="text" placeholder="جستجو ... " />
-            </div>
+            <form method="get" asp-action="Search">
+                <div class="col-md-4">
+                    <input class="form-control" type="text" name="q" placeholder="جستجو ... " />
+                    <input class="btn btn-success btn-xs" type="submit" value="بگرد" />
+                </div>
+            </form>
         </div>
     </header>
     <div class="col-md-offset-1">

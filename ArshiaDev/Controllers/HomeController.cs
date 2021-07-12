@@ -95,9 +95,13 @@ namespace ArshiaDev.Controllers
 
         public async Task<IActionResult> Search(string q)
         {
-            //List<Post> posts = await postRepository.get
+            List<Post> postByName = await postRepository.GetPostBySearch(q);
+            postByName.AddRange(await tagRepository.GetPostByTagSearch(q));
 
-            return View();
+            IEnumerable<Post> posts = postByName.GroupBy(x => x.Id)
+                .Select(x => x.First());
+
+            return View("Allposts",posts);
         }
 
         #endregion

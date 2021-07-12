@@ -10,5 +10,6 @@ namespace ArshiaDev.Core.Interfaces
     {
         Task<List<Tag>> ShowAllTagsByPostId(int id);
         Task<IEnumerable<Tag>> GetTagsByPostId(int postId);
+        Task<List<Post>> GetPostByTagSearch(string name);
     }
 }

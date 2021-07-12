@@ -17,6 +17,13 @@ namespace ArshiaDev.Core.Services
               
         }
 
+        public async Task<List<Post>> GetPostByTagSearch(string name)
+        {
+            List<Post> posts = await Table.Where(x => x.TagName.Contains(name)).Select(x=>x.Post).ToListAsync();
+
+            return posts;
+        }
+
         public async Task<IEnumerable<Tag>> GetTagsByPostId(int postId)
         {
             return await Table.Where(x => x.PostId == postId).ToListAsync();
