@@ -91,5 +91,16 @@ namespace ArshiaDev.Controllers
         #endregion
 
 
+        #region Search
+
+        public async Task<IActionResult> Search(string q)
+        {
+            //List<Post> posts = await postRepository.get
+
+            return View();
+        }
+
+        #endregion
+
     }
 }
