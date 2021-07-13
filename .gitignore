@@ -1,7 +1,33 @@
-*.dll
-*.pdb
-*netcoreapp3.1
-ArshiaDev/bin/Debug/netcoreapp3.1/ArshiaDev.Views.pdb
-ArshiaDev/obj/Debug/netcoreapp3.1/ArshiaDev.Views.dll
-ArshiaDev/obj/Debug/netcoreapp3.1/ArshiaDev.Views.pdb
-ArshiaDev/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_Layout.cshtml.g.cs
+
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+
+# Visual Studio Code
+.vscode
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
